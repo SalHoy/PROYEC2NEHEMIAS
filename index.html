@@ -866,25 +866,64 @@
             }
 
             const d = collectAllFormData();
-            let message = `🧱 *LEVANTÉMONOS Y EDIFIQUEMOS (INICIATIVA COMUNITARIA)*\n` +
+            let message = `🧱 *INFORME TÉCNICO COMPLETO - INICIATIVA COMUNITARIA*\n` +
                 `*Fundación Social Salud Hoy al Alcance de Todos*\n\n` +
-                `*1. EL LLAMADO DEL LÍDER*\n` +
-                `• Nombre: ${d.p1.nombre}\n` +
-                `• WhatsApp: ${d.p1.whatsapp}\n` +
+                
+                `*📖 1. EL LÍDER Y SU COMUNIDAD*\n` +
+                `• Proponente: ${d.p1.nombre}\n` +
+                `• WhatsApp: ${d.p1.whatsapp} | Correo: ${d.p1.email}\n` +
                 `• Ubicación: ${d.p1.municipio}, ${d.p1.depto} (${d.p1.comunidad})\n` +
-                `• Organización: ${d.p1.orgNombre}\n\n` +
-                `*2. CLASIFICACIÓN*\n` +
+                `• Rol: ${d.p1.cargo}\n` +
+                `• Tipo: ${d.p1.tipoRep}` + (d.p1.tipoRep === 'Organizacion' ? ` (Org: ${d.p1.orgNombre} - NIT/Pers: ${d.p1.nit})` : '') + `\n` +
+                `• Participantes base: ${d.p1.participantes}\n\n` +
+                
+                `*🚪 2. CLASIFICACIÓN DEL PROYECTO*\n` +
+                `• Propuesta: ${d.p2.nombreProp}\n` +
                 `• Categoría: ${d.p2.categoria}\n` +
-                `• Propuesta: ${d.p2.nombreProp}\n\n` +
-                `*3. PROBLEMA*\n` +
-                `${d.p3.problema}\n\n` +
-                `*4. SOLUCIÓN*\n` +
-                `${d.p4.propuesta}\n\n` +
-                `*5. BENEFICIARIOS*\n` +
-                `• Directos: ${d.p5.directos} (${d.p5.grupos})\n\n` +
-                `*6. PRESUPUESTO EST.*:\n` +
-                `• Total: $${d.p7.totalGeneral.toLocaleString('es-CO')} COP\n\n` +
-                `_Enviado desde la plataforma oficial de la Fundación._`;
+                `• Etapa actual: ${d.p2.etapa} (${d.p2.tipoIdea})\n` +
+                `• Objetivo principal: ${d.p2.objetivo}\n\n` +
+                
+                `*🔍 3. EL DIAGNÓSTICO (LAS RUINAS)*\n` +
+                `• Problema/Necesidad: ${d.p3.problema}\n` +
+                `• Afectados principales: ${d.p3.afectados}\n` +
+                `• Antigüedad del problema: ${d.p3.tiempo}\n` +
+                `• Consecuencias: ${d.p3.consecuencias}\n` +
+                `• Intentos pasados: ${d.p3.intentos}\n` +
+                `• Recursos actuales comunitarios: ${d.p3.recursosAct}\n\n` +
+                
+                `*🏗️ 4. LA SOLUCIÓN (LA OBRA)*\n` +
+                `• Solución propuesta: ${d.p4.propuesta}\n` +
+                `• Resultados esperados: ${d.p4.resultados}\n` +
+                `• Actividades clave: ${d.p4.actividades.join(', ')}\n` +
+                `• Necesidades iniciales: ${d.p4.necesidades}\n` +
+                `• Aliados / Apoyos locales: ${d.p4.aliados}\n` +
+                `• Participación de la gente: ${d.p4.participacion}\n\n` +
+                
+                `*👨‍👩‍👧‍👦 5. POBLACIÓN BENEFICIARIA*\n` +
+                `• Directos: ${d.p5.directos} | Indirectos: ${d.p5.indirectos}\n` +
+                `• Población objetivo: ${d.p5.grupos}\n` +
+                `• Características del contexto: ${d.p5.caracteristicas}\n` +
+                `• Enfoque de inclusión: ${d.p5.inclusion}\n\n` +
+                
+                `*⚙️ 6. ORGANIZACIÓN Y OPERACIÓN*\n` +
+                `• ¿Cómo operará?: ${d.p6.operacion}\n` +
+                `• Administración de recursos: ${d.p6.administracion}\n` +
+                `• Experiencia previa del equipo: ${d.p6.experiencia}\n` +
+                `• Requisitos técnicos/legales: ${d.p6.requisitos}\n\n` +
+                
+                `*💰 7. PRESUPUESTO Y PROVISIÓN*\n` +
+                `• TOTAL ESTIMADO: $${d.p7.totalGeneral.toLocaleString('es-CO')} COP\n` +
+                `• Aporte de la Comunidad (Mano de obra, lote, etc): ${d.p7.aporteComunidad}\n` +
+                `• Financiación recibida previa: ${d.p7.financiacionPrevia}\n\n` +
+                
+                `*🛡️ 8. SOSTENIBILIDAD Y RIESGOS*\n` +
+                `• Inicio deseado: ${d.p8.inicio}\n` +
+                `• Duración estimada: ${d.p8.duracion}\n` +
+                `• Riesgos detectados: ${d.p8.riesgos}\n` +
+                `• Estrategia de mitigación: ${d.p8.mitigacion}\n` +
+                `• Sostenibilidad post-financiación: ${d.p8.sostenibilidad}\n` +
+                `• Metas al 1er año: ${d.p8.resultadosAnual}\n\n` +
+                `_Reporte integral generado para comité de evaluación técnica._`;
 
             const encoded = encodeURIComponent(message);
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
@@ -892,26 +931,100 @@
 
         function downloadFichaPDF() {
             const d = collectAllFormData();
-            let content = `========================================\n` +
+            let content = `======================================================================\n` +
                 `FUNDACIÓN SOCIAL SALUD HOY AL ALCANCE DE TODOS\n` +
-                `Ficha de Iniciativa Comunitaria - "Levantémonos y Edifiquemos"\n` +
-                `========================================\n\n` +
-                `1. EL LLAMADO DEL LÍDER:\n` +
-                `- Proponente: ${d.p1.nombre}\n` +
+                `FICHA TÉCNICA INTEGRAL - EVALUACIÓN DE INICIATIVA COMUNITARIA\n` +
+                `"Levantémonos y Edifiquemos"\n` +
+                `======================================================================\n\n` +
+                
+                `--- 1. EL LLAMADO DEL LÍDER (IDENTIFICACIÓN DEL PROPONENTE) ---\n` +
+                `- Nombre: ${d.p1.nombre}\n` +
                 `- WhatsApp: ${d.p1.whatsapp}\n` +
-                `- Ubicación: ${d.p1.municipio}, ${d.p1.depto} - ${d.p1.comunidad}\n\n` +
-                `2. PROPUESTA:\n` +
+                `- Correo: ${d.p1.email}\n` +
+                `- Departamento: ${d.p1.depto}\n` +
+                `- Municipio: ${d.p1.municipio}\n` +
+                `- Comunidad / Territorio: ${d.p1.comunidad}\n` +
+                `- Cargo/Rol en la comunidad: ${d.p1.cargo}\n` +
+                `- Tipo de representación: ${d.p1.tipoRep}\n`;
+                
+            if (d.p1.tipoRep === 'Organizacion') {
+                content += `- Nombre de Organización: ${d.p1.orgNombre}\n` +
+                           `- Estado de constitución: ${d.p1.constituyda}\n` +
+                           `- NIT / Personería jurídica: ${d.p1.nit}\n`;
+            }
+            
+            content += `- Personas participando actualmente en la idea: ${d.p1.participantes}\n` +
+                `- Contacto secundario: ${d.p1.contactoSec}\n\n` +
+                
+                `--- 2. LAS PUERTAS A RESTAURAR (CLASIFICACIÓN) ---\n` +
+                `- Nombre de la propuesta: ${d.p2.nombreProp}\n` +
                 `- Categoría: ${d.p2.categoria}\n` +
-                `- Nombre: ${d.p2.nombreProp}\n\n` +
-                `3. PROBLEMA:\n${d.p3.problema}\n\n` +
-                `4. SOLUCIÓN:\n${d.p4.propuesta}\n\n` +
-                `5. PRESUPUESTO: $${d.p7.totalGeneral.toLocaleString('es-CO')} COP\n`;
+                `- Estado actual: ${d.p2.tipoIdea}\n` +
+                `- Etapa de desarrollo: ${d.p2.etapa}\n` +
+                `- Objetivo principal: ${d.p2.objetivo}\n\n` +
+                
+                `--- 3. INSPECCIÓN DE LAS RUINAS (DIAGNÓSTICO DEL PROBLEMA) ---\n` +
+                `- Situación a mejorar o problema principal:\n  ${d.p3.problema}\n` +
+                `- A quiénes afecta: ${d.p3.afectados}\n` +
+                `- Tiempo de existencia: ${d.p3.tiempo}\n` +
+                `- Consecuencias de no actuar:\n  ${d.p3.consecuencias}\n` +
+                `- Soluciones intentadas anteriormente: ${d.p3.intentos}\n` +
+                `- Recursos / capacidades que ya tiene la comunidad: ${d.p3.recursosAct}\n` +
+                `- Evidencias disponibles: ${d.p3.evidencias}\n\n` +
+                
+                `--- 4. ¡LEVANTÉMONOS Y EDIFIQUEMOS! (LA SOLUCIÓN PROPUESTA) ---\n` +
+                `- Descripción de la solución:\n  ${d.p4.propuesta}\n` +
+                `- Resultados, productos o servicios que se obtendrán: ${d.p4.resultados}\n` +
+                `- Actividades principales a realizar:\n`;
+            
+            d.p4.actividades.forEach(act => {
+                content += `  * ${act}\n`;
+            });
+            
+            content += `- Qué necesitan para arrancar: ${d.p4.necesidades}\n` +
+                `- Aliados potenciales en el territorio: ${d.p4.aliados}\n` +
+                `- Dinámica de participación comunitaria en la ejecución: ${d.p4.participacion}\n\n` +
+                
+                `--- 5. LAS FAMILIAS SOBRE EL MURO (POBLACIÓN BENEFICIARIA) ---\n` +
+                `- Beneficiarios directos: ${d.p5.directos} personas\n` +
+                `- Beneficiarios indirectos: ${d.p5.indirectos} personas\n` +
+                `- Grupos poblacionales (ej. jóvenes, madres, etnias): ${d.p5.grupos}\n` +
+                `- Características particulares del territorio: ${d.p5.caracteristicas}\n` +
+                `- Mecanismos para garantizar inclusión: ${d.p5.inclusion}\n\n` +
+                
+                `--- 6. ORGANIZACIÓN DE LA OBRA (DETALLES OPERATIVOS) ---\n` +
+                `- ¿Cómo funcionará o se operará en el día a día?:\n  ${d.p6.operacion}\n` +
+                `- Quién administrará los recursos/equipos: ${d.p6.administracion}\n` +
+                `- Experiencia técnica o empírica del equipo: ${d.p6.experiencia}\n` +
+                `- Requerimientos logísticos, técnicos o sanitarios: ${d.p6.requisitos}\n\n` +
+                
+                `--- 7. LA PROVISIÓN PARA LA OBRA (PRESUPUESTO) ---\n` +
+                `- COSTO TOTAL ESTIMADO: $${d.p7.totalGeneral.toLocaleString('es-CO')} COP\n` +
+                `- Aportes disponibles de la comunidad: ${d.p7.aporteComunidad}\n` +
+                `- Financiación previa recibida: ${d.p7.financiacionPrevia}\n\n` +
+                `>> DESGLOSE ESPECÍFICO DEL PRESUPUESTO:\n`;
+                
+            budgetRowsData.forEach(row => {
+                content += `  > Concepto: ${row.concepto} | Cantidad: ${row.cant} | Valor Unitario: $${row.unit.toLocaleString('es-CO')} | Subtotal: $${(row.cant * row.unit).toLocaleString('es-CO')}\n`;
+            });
+            
+            content += `\n--- 8. LA ESPADA Y LA CUCHARA (CRONOGRAMA Y RIESGOS) ---\n` +
+                `- Fecha de inicio proyectada: ${d.p8.inicio}\n` +
+                `- Tiempo estimado de ejecución del proyecto: ${d.p8.duracion}\n` +
+                `- Posibles riesgos, amenazas o dificultades: ${d.p8.riesgos}\n` +
+                `- Acciones para mitigar dichos riesgos: ${d.p8.mitigacion}\n` +
+                `- Plan de sostenibilidad una vez finalice la financiación:\n  ${d.p8.sostenibilidad}\n` +
+                `- Metas / Resultados concretos a 1 año: ${d.p8.resultadosAnual}\n\n` +
+                
+                `======================================================================\n` +
+                `Documento estructurado automáticamente por el sistema de captura de la\n` +
+                `Fundación Social Salud Hoy al Alcance de Todos para análisis exhaustivo.\n`;
 
             const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Iniciativa_${d.p1.municipio.replace(/\s+/g, '_')}.txt`;
+            a.download = `INFORME_TECNICO_${d.p1.municipio.replace(/\s+/g, '_')}_${d.p1.nombre.replace(/\s+/g, '_')}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
